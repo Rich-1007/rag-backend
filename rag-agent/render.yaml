@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: rag-agent
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 120
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+```
+
+---
+
+## ✅ Your Folder Should Look Like This
+```
+rag-agent/
+├── .env
+├── .gitignore
+├── requirements.txt
+├── config.py
+├── chunker.py
+├── embedder.py
+├── vector_store.py
+├── retriever.py
+├── ingest.py
+├── agent.py
+├── app.py
+└── render.yaml
